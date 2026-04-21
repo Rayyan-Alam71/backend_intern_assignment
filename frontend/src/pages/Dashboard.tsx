@@ -37,7 +37,7 @@ export default function Dashboard() {
   const fetchTasks = async () => {
     const token = localStorage.getItem("token");
     try {
-      const res = await axios.get("http://localhost:5000/api/v1/tasks", {
+      const res = await axios.get("https://backend-intern-assignment-backend-67tu7jfig.vercel.app/api/v1/tasks", {
         headers: { Authorization: `Bearer ${token}` },
       });
       setTasks(res.data.data);
