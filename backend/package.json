@@ -4,6 +4,7 @@
   "description": "Scalable REST API with Authentication & Role-Based Access",
   "main": "dist/app.js",
   "scripts": {
+    
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "build": "tsc -b && npx prisma generate",
     "start": "node dist/app.js",
