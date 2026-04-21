@@ -14,7 +14,7 @@ export default function Register() {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post("https://backend-intern-assignment-backend-67tu7jfig.vercel.app/api/v1/auth/register", {
+      await axios.post("http://localhost:5000/api/v1/auth/register", {
         name,
         email,
         password,
