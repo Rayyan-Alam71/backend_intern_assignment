@@ -1,15 +1,15 @@
 # Task Management API
 
-A scalable REST API with JWT authentication and role-based access control, featuring a React frontend for demo purposes.
+A REST API with JWT authentication and role-based access control for managing tasks. Built with Node.js, Express, TypeScript, and PostgreSQL (Prisma ORM).
 
 ## Tech Stack
 
-**Backend:** Node.js + Express + TypeScript + Prisma (PostgreSQL)
-**Frontend:** React + TypeScript + Tailwind CSS
+- **Backend:** Node.js + Express + TypeScript + Prisma (PostgreSQL)
+- **Frontend:** React + TypeScript + Tailwind CSS
 
 ## Environment Variables
 
-Copy `.env.example` to `.env` and configure:
+Copy `.env.example` to `.env` in the backend folder:
 
 ```env
 PORT=5000
@@ -43,22 +43,34 @@ npm run dev    # runs on port 5173
 
 | Method | Route | Access | Description |
 |--------|-------|--------|-------------|
-| POST | `/register` | Public | Register user |
-| POST | `/login` | Public | Login, returns JWT |
+| POST | `/register` | Public | Register new user (role: USER by default) |
+| POST | `/login` | Public | Login, returns JWT token |
 | GET | `/me` | Private | Get current user info |
 
 ### Tasks Module (`/api/v1/tasks`)
 
 | Method | Route | Access | Description |
 |--------|-------|--------|-------------|
-| GET | `/` | user + admin | Get tasks (admin sees all) |
-| POST | `/` | user + admin | Create task |
+| GET | `/` | user + admin | Get tasks (admin sees all, user sees own) |
+| POST | `/` | user + admin | Create a new task |
 | PUT | `/:id` | owner or admin | Update task |
 | DELETE | `/:id` | owner or admin | Delete task |
 
 ## API Documentation
 
-Swagger docs available at: `http://localhost:5000/api/docs`
+Swagger docs available at: http://localhost:5000/api/docs
+
+## Response Format
+
+**Success:**
+```json
+{ "success": true, "data": { } }
+```
+
+**Error:**
+```json
+{ "success": false, "message": "..." }
+```
 
 ## Scalability Note
 
@@ -70,7 +82,3 @@ Swagger docs available at: `http://localhost:5000/api/docs`
 - Load balance with Nginx / AWS ALB across multiple instances
 - Containerize with Docker + Docker Compose
 - Use a message queue (BullMQ) for async jobs
-
-
-
-claude --resume f839bb6d-7a5e-4495-9684-5b3ed5a816ed
